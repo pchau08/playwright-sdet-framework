@@ -1,15 +1,14 @@
 const { test, expect } = require('@playwright/test');
+const HomeSearchPanel = require('../../page-objects/HomeSearchPanel');
 
 test.describe('@smoke', () => {
   test('Critical path: user can search listings by city', async ({ page }) => {
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const homeSearch = new HomeSearchPanel(page);
 
-    // City textbox is labeled "City" (accessible name), not a placeholder
-    await page.getByRole('textbox', { name: /^city$/i }).fill('Chicago');
+    await homeSearch.goto();
+    await homeSearch.searchByCity('Chicago');
 
-    await page.getByRole('button', { name: /start search/i }).click();
-
-    // Replace with a stable assertion once we confirm what results page shows for Chicago
+    // Keep this assertion lightweight + stable until we pick a better result anchor
     await expect(page).toHaveURL(/search|featured-listings|listings/i);
   });
 });
