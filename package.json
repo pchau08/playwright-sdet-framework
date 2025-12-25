@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+ "scripts": {
+  "test": "playwright test",
+  "test:smoke": "playwright test --grep @smoke --project=chromium",
+  "report": "playwright show-report",
+  "lint:quick": "node -c playwright.config.ts && echo OK"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pchau08/playwright-sdet-framework.git"
