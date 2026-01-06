@@ -8,7 +8,6 @@ test.describe('@smoke', () => {
     await homeSearch.goto();
     await homeSearch.searchByCity('Chicago');
 
-    // Keep this assertion lightweight + stable until we pick a better result anchor
     await expect(page).toHaveURL(/search|featured-listings|listings/i);
   });
 });
